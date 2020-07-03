@@ -50,7 +50,7 @@ class JawabanController extends Controller
      */
     public function show(Jawaban $jawaban)
     {
-        //
+        return view('jawaban.show', compact('jawaban'));
     }
 
     /**
@@ -61,7 +61,8 @@ class JawabanController extends Controller
      */
     public function edit(Jawaban $jawaban)
     {
-        //
+        $pertanyaan = Pertanyaan::all();
+        return view('jawaban.edit', compact('jawaban'), compact('pertanyaan'));
     }
 
     /**
@@ -73,7 +74,16 @@ class JawabanController extends Controller
      */
     public function update(Request $request, Jawaban $jawaban)
     {
-        //
+        Jawaban::where('id', $jawaban->id)
+            ->update([
+                'isi' => $request->isi,
+                'jawaban_benar' => $request->jawaban_benar,
+                'like' => $request->like,
+                'dislike' => $request->dislike,
+                'vote' => ($request->like - $request->dislike),
+                'id_pertanyaan' => $request->id_pertanyaan
+            ]);
+        return redirect()->route('jawaban.index');
     }
 
     /**
@@ -84,6 +94,7 @@ class JawabanController extends Controller
      */
     public function destroy(Jawaban $jawaban)
     {
-        //
+        Jawaban::destroy($jawaban->id);
+        return redirect()->route('jawaban.index');
     }
 }

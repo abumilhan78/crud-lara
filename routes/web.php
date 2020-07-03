@@ -13,8 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/pertanyaan', "PertanyaanController@index");
-Route::get('/pertanyaan/create', "PertanyaanController@create");
-Route::post('/pertanyaan', "PertanyaanController@store");
-Route::get('/jawaban/{pertanyaan_id}', "PertanyaanController@index");
-Route::post('/jawaban/{pertanyaan_id}', "PertanyaanController@store");
+Route::resource('pertanyaan', 'PertanyaanController');
+Route::resource('jawaban', 'JawabanController');

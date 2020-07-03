@@ -11,15 +11,15 @@
     <form action="{{route('jawaban.create')}}" method="post" accept-charset="utf-8">
       <div class="form-group">
         <label>Judul</label>
-        <input type="text" name="judul" class="form-control">
+        <input type="text" name="judul" class="form-control" readonly>
       </div>
       <div class="form-group">
         <label>Isi</label>
-        <textarea class="form-control" name="isi"></textarea>
+        <textarea class="form-control" name="isi" readonly></textarea>
       </div>
       <div class="form-group">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="like" id="defaultCheck1">
+          <input class="form-check-input" type="checkbox" @if(isset($jawaban->like)) checked @endif disabled name="like" id="defaultCheck1">
           <label class="form-check-label" for="defaultCheck1">
             Like
           </label>
@@ -27,7 +27,7 @@
       </div>
       <div class="form-group">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="like" id="defaultCheck1">
+          <input class="form-check-input" type="checkbox" @if(isset($jawaban->like)) checked @endif disabled name="like" id="defaultCheck1">
           <label class="form-check-label" for="defaultCheck1">
             Dislike
           </label>
